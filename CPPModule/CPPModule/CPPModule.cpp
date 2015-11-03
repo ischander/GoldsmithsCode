@@ -15,8 +15,7 @@ using std::string;
 int main(int argc, const char * argv[])
 {
 	int stopper;
-	int selectedOption = 0;
-	int currentRoom = 0;
+	//int selectedOption = 0;
 
 	vector<Room> rooms;
 	rooms.push_back(Room("You are standing on the edge of a deep dark forest."));
@@ -24,24 +23,34 @@ int main(int argc, const char * argv[])
 	rooms.push_back(Room("You see a clearing"));
 	rooms.push_back(Room("It's even darker"));
 
-	rooms[0].addDoor("Stay here", 0);
-	rooms[0].addDoor("Path into the forest", 1);
-	rooms[1].addDoor("Go back", 0);
-	rooms[1].addDoor("Turn left", 1);
-	rooms[1].addDoor("Turn right", 2);
-	rooms[2].addDoor("Go back", 1);
-	rooms[3].addDoor("Go back", 1);
+	rooms[0].addDoor("Stay here", &rooms[0]);
+	rooms[0].addDoor("Path into the forest", &rooms[1]);
+	rooms[1].addDoor("Go back", &rooms[0]);
+	rooms[1].addDoor("Stay here", &rooms[1]);
+	rooms[1].addDoor("Turn left", &rooms[2]);
+	rooms[1].addDoor("Turn right", &rooms[3]);
+	rooms[2].addDoor("Go back", &rooms[1]);
+	rooms[3].addDoor("Go back", &rooms[1]);
 
-
+	Room *currentRoom = &rooms[0];
 	//std:: - namespace (iostream library stops confusion with same named functions with other libraries)
 	//<< - operator, capable of being overloaded, can create custom versions for each class
 	//<< - send to thing on the left
 	
 	while (true) {
-		rooms[currentRoom].Display();
+		
+		currentRoom->Display();
+		currentRoom = currentRoom->makeChoice();
+		
+		/*rooms[currentRoom].Display();
+		Room *i = rooms[currentRoom].makeChoice();
+
+		if (i >= 0 && rooms.size()) {
+			currentRoom = i;
+		}*/
 
 		//This is true or false - used for validation
-		if (std::cin >> selectedOption) {
+		/*if (std::cin >> selectedOption) {
 			if (selectedOption == 1) {
 				if (currentRoom < rooms.size() - 1) {
 					currentRoom+=1;
@@ -64,7 +73,7 @@ int main(int argc, const char * argv[])
 			std::cout << "Incorrect input, type a number" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
-		}
+		}*/
 	}
 	//std::endl - end line
 	//returns 0 if there are no errors

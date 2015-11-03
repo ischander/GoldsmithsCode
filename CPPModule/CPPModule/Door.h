@@ -3,16 +3,20 @@
 #define Door_h
 #include <stdio.h>
 #include<string>
+//Forward declaration - lets doors know rooms exist
+class Room;
 
 class Door
 {
 	std::string text;
-	int nextRoom;
+	Room *nextRoom;
+
 public:
-	Door(std::string _text, int _nextRoom);
+	Door(std::string _text, Room *_nextRoom);
 	~Door();
 	void display();
-	int getRoom();
+	//Returns a pointer to a room
+	Room * getRoom();
 };
 
 #endif /*door_h*/

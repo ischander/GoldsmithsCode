@@ -3,7 +3,7 @@
 #include<iostream>
 
 
-Door::Door(std::string _text, int _nextRoom):text(_text), nextRoom(_nextRoom){}
+Door::Door(std::string _text, Room *_nextRoom):text(_text), nextRoom(_nextRoom){}
 
 Door::~Door(){}
 
@@ -12,7 +12,8 @@ void Door::display()
 	std::cout << text << std::endl;
 }
 
-int Door::getRoom() 
+//Function returning pointer
+Room * Door:: getRoom() 
 {
 	return nextRoom;
 }

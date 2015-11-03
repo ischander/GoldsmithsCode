@@ -16,8 +16,9 @@ class Room
 public:
 	Room(std::string _text);
 	~Room();
-	void addDoor(std::string text, int nextRoom);
+	void addDoor(std::string text, Room * nextRoom);
 	void Display();
+	Room* makeChoice();
 };
 
 #endif /*Room_h*/
