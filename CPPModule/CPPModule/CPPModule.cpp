@@ -3,6 +3,7 @@
 
 //Preprocessor directive
 #include "stdafx.h"
+#include "Room.h"
 //copies content of iostream into file
 #include <iostream>
 #include<vector>
