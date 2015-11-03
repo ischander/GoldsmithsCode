@@ -28,10 +28,7 @@ int main(int argc, const char * argv[])
 	//<< - send to thing on the left
 	
 	while (true) {
-		std::cout << rooms[currentRoom] << std::endl;
-		std::cout << "1. Go In" << std::endl;
-		std::cout << "2. Stay outside" << std::endl;
-		std::cout << "3. Go Back" << std::endl;
+		rooms[currentRoom].Display();
 
 		//This is true or false - used for validation
 		if (std::cin >> selectedOption) {
