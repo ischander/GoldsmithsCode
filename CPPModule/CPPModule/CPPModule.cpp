@@ -18,10 +18,10 @@ int main(int argc, const char * argv[])
 	int selectedOption = 0;
 	int currentRoom = 0;
 
-	vector<std::string> rooms;
-	rooms.push_back("You are standing on the edge of a deep dark forest.");
-	rooms.push_back("You are standing in the forest, its dark in here");
-	rooms.push_back("You see a clearing");
+	vector<Room> rooms;
+	rooms.push_back(Room("You are standing on the edge of a deep dark forest."));
+	rooms.push_back(Room("You are standing in the forest, its dark in here"));
+	rooms.push_back(Room("You see a clearing"));
 
 	//std:: - namespace (iostream library stops confusion with same named functions with other libraries)
 	//<< - operator, capable of being overloaded, can create custom versions for each class
