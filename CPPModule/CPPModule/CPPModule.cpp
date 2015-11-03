@@ -17,6 +17,7 @@ int main(int argc, const char * argv[])
 	int stopper;
 	//int selectedOption = 0;
 
+	/*ARRAY OF ROOMS
 	vector<Room> rooms;
 	rooms.push_back(Room("You are standing on the edge of a deep dark forest."));
 	rooms.push_back(Room("You are standing in the forest, its dark in here"));
@@ -32,13 +33,37 @@ int main(int argc, const char * argv[])
 	rooms[2].addDoor("Go back", &rooms[1]);
 	rooms[3].addDoor("Go back", &rooms[1]);
 
-	Room *currentRoom = &rooms[0];
+	Room *currentRoom = &rooms[0];*/
+	
+	//ARRAY OF POINTERS TO ROOMS - INCOMPLETE
+	vector<Room *> rooms;
+	rooms.push_back(new Room("You are standing on the edge of a deep dark forest."));
+	rooms.push_back(new Room("You are standing in the forest, its dark in here"));
+	rooms.push_back(new Room("You see a clearing"));
+	rooms.push_back(new Room("It's even darker"));
+
+	rooms[0] ->addDoor("Stay here", rooms[0]);
+	rooms[0]->addDoor("Path into the forest", rooms[1]);
+	rooms[1]->addDoor("Go back", rooms[0]);
+	rooms[1]->addDoor("Stay here", rooms[1]);
+	rooms[1]->addDoor("Turn left", rooms[2]);
+	rooms[1]->addDoor("Turn right", rooms[3]);
+	rooms[2]->addDoor("Go back", rooms[1]);
+	rooms[3]->addDoor("Go back", rooms[1]);
+
+	//ARRAY OF ROOMS - OLD CODE
+	//Room *currentRoom = &rooms[0];
+
+	//ARRAY OF POINTERS
+	Room *currentRoom = rooms[0];
+
 	//std:: - namespace (iostream library stops confusion with same named functions with other libraries)
 	//<< - operator, capable of being overloaded, can create custom versions for each class
 	//<< - send to thing on the left
 	
 	while (true) {
 		
+		//Calling function on the room pointer
 		currentRoom->Display();
 		currentRoom = currentRoom->makeChoice();
 		
@@ -77,6 +102,11 @@ int main(int argc, const char * argv[])
 	}
 	//std::endl - end line
 	//returns 0 if there are no errors
+	for (int i = 0; i < rooms.size(); i++)
+	{
+		delete rooms[i];
+	}
+	rooms.clear();
 	std::cin >> stopper;
 	return 0;
 }
