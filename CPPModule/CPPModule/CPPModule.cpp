@@ -22,6 +22,16 @@ int main(int argc, const char * argv[])
 	rooms.push_back(Room("You are standing on the edge of a deep dark forest."));
 	rooms.push_back(Room("You are standing in the forest, its dark in here"));
 	rooms.push_back(Room("You see a clearing"));
+	rooms.push_back(Room("It's even darker"));
+
+	rooms[0].addDoor("Stay here", 0);
+	rooms[0].addDoor("Path into the forest", 1);
+	rooms[1].addDoor("Go back", 0);
+	rooms[1].addDoor("Turn left", 1);
+	rooms[1].addDoor("Turn right", 2);
+	rooms[2].addDoor("Go back", 1);
+	rooms[3].addDoor("Go back", 1);
+
 
 	//std:: - namespace (iostream library stops confusion with same named functions with other libraries)
 	//<< - operator, capable of being overloaded, can create custom versions for each class
