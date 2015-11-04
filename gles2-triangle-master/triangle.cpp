@@ -68,7 +68,7 @@ int main(int argc, char **argv)
   glCompileShader(vertex_shader);
 
   // fragment shader draws in red
-  const char *fs = "void main() { gl_FragColor = vec4(1, 0, 0, 1); }";
+  const char *fs = "void main() { gl_FragColor = vec4(1, 0, 1, 1); }";
   GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragment_shader, 1, &fs, nullptr);
   glCompileShader(fragment_shader);
