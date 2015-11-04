@@ -116,8 +116,8 @@ public:
 
 		// corners of the triangle
 		static const float vertices[] = {
-			0.5f,  0.5f, // 2, GL_FLOAT (ie. vec2)
-			-0.5f,  0.5f,
+			0.25f,  0.5f, // 2, GL_FLOAT (ie. vec2)
+			-0.5f,  0.1f,
 			0.5f, -0.5f
 		};
 
@@ -129,7 +129,7 @@ public:
 		glEnableVertexAttribArray(0);
 
 		GLuint offset_loc = glGetUniformLocation(program, "offset");
-		glUniform2f(offset_loc, cosf(frame_number*0.5f), 0);
+		glUniform2f(offset_loc, cosf(frame_number*0.1f), cosf(frame_number*0.05f));
 		frame_number++;
 
 		// draw the triangle
@@ -168,7 +168,7 @@ int main(int argc, char **argv)
     attribute vec2 pos;\
     uniform vec2 offset;\
     void main() {\
-      gl_Position = vec4(pos + offset, 1, 1);\
+      gl_Position = vec4(pos + offset, 0, 1);\
     }"
 		;
 	GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
@@ -178,7 +178,7 @@ int main(int argc, char **argv)
 	// fragment shader draws in red
 	const char *fs = "\
     void main() {\
-      gl_FragColor = vec4(1, 0, 1, 1);\
+      gl_FragColor = vec4(1, 1, 0, 2);\
     }"
 		;
 	GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
